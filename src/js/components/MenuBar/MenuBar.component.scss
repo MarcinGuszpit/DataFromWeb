@@ -1,0 +1,44 @@
+@import "src/scss/mixins";
+
+.menu-bar {
+  display: flex;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 10px;
+
+  .icon-wrapper {
+    @include icon-wrapper();
+    background-color: #55ccc8;
+  }
+
+  .menu-elements {
+    list-style-type: none;
+    display: flex;
+    column-gap: 10px;
+    margin-left: 20px;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        text-decoration: none;
+        color: black;
+        text-transform: capitalize;
+        font-size: 18px;
+
+        &:hover {
+           color: #55ccc8;
+        }
+
+      }
+
+
+    }
+  }
+
+
+}
+

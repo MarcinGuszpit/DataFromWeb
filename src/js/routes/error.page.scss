@@ -1,0 +1,53 @@
+@import "src/scss/mixins";
+
+.error-page {
+  width: 100%;
+  min-height: 250px;
+  background-color: #ea6060;
+  color: white;
+  position: relative;
+  padding-left: 80px;
+  padding-top: 50px;
+
+  .icon-wrapper {
+    @include icon-wrapper;
+    position: absolute;
+    height: 60px;
+    top: 60px;
+    left: 0;
+    background-color: white;
+
+    svg {
+      fill: #ea6060;
+    }
+
+  }
+
+  .error-content {
+    position: relative;
+  }
+
+  .error-title, .error-description {
+    color: white;
+
+  }
+
+  .error-title {
+     font-weight: 600;
+     font-size: 50px;
+  }
+
+  .error-description {
+     font-size: 18px;
+     font-weight: 400;
+     width: 70%;
+     text-align: justify;
+  }
+
+  .error-link {
+     display: block;
+     color: white;
+     padding: 40px 0;
+  }
+
+}
