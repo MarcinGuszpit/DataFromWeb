@@ -1,6 +1,9 @@
 import {createBrowserRouter} from "react-router-dom";
 import {MainPage} from "../pages/main.page";
 import {ErrorPage} from "./error.page";
+import {MfPage} from "../pages/mf.page";
+import {VATVIESPage} from "../pages/vatVies.page";
+import {NBPPage} from "../pages/nbp.page";
 
 export const router = createBrowserRouter([
     {
@@ -14,15 +17,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/kursy-nbp",
-                element: <div>Kursy NBP</div>,
+                element: <NBPPage/>,
             },
             {
                 path: "/VAT-VIES",
-                element: <div>VAT VIES</div>,
+                element: <VATVIESPage/>,
             },
             {
                 path: "/NIP",
-                element: <div>Informacja NIP, REGON</div>,
+                element: <MfPage/>,
             },
         ]
     },

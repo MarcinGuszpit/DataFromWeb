@@ -1,0 +1,24 @@
+.radio-button-group {
+  background-color: #263a53;
+  display: flex;
+  flex-direction: column;
+
+  .button-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    min-height: 60px;
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+
+  .radio-button {
+  }
+
+  .radio-label {
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+}

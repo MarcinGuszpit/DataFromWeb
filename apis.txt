@@ -1,0 +1,36 @@
+NBP - tabele kursów
+
+dla konkretnej daty
+http://api.nbp.pl/api/exchangerates/tables/{tabela}/{data}/?format=json
+
+
+lub dla obowiązującej tabeli kursów
+
+http://api.nbp.pl/api/exchangerates/tables/{tabela}/today/?format=json
+
+{tabela} = a,b,c
+{data} - data w formacie rrrr-mm-dd
+
+VAT VIES
+
+https://ec.europa.eu/taxation_customs/vies/rest-api/ms/{kraj}/vat/{nr-vat}
+
+kraj - kod kraju np PL,
+nr-vat - numer vat bez średników
+
+
+MF dane
+
+https://www.gov.pl/web/kas/api-wykazu-podatnikow-vat
+
+https://wl-api.mf.gov.pl/api/search/nip/{nip}/?date={data}
+https://wl-api.mf.gov.pl/api/search/bank-account/{konto}/?date={data}
+https://wl-api.mf.gov.pl/api/search/regon/{regon}/?data={data}
+
+szukanie po numerze nip, nr konta bankowego i regon
+
+GUS
+
+Regon API
+
+https://api.stat.gov.pl/Home/RegonApi
