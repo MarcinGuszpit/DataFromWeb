@@ -1,0 +1,24 @@
+.npb-page-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   row-gap: 20px;
+   padding-bottom: 800px;
+}
+
+.page-title {
+   color: white;
+}
+
+.date-picker-wrapper {
+
+
+   &.disabled {
+      pointer-events: none;
+   }
+
+}
+
+
+

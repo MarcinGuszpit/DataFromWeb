@@ -6,14 +6,13 @@ import {DatePickerCell} from "./DatePickerCell.component";
 import {getElementClass} from "../../utils/Other.utils";
 
 export const DatePickerComponent = ({value, changeValue, fieldStates, labelName, propertyName}) => {
-    const [date, setDate] = useState(new Date());
-    const [dateInput, setDateInput] = useState(date.toLocaleDateString());
+    const [dateInput, setDateInput] = useState(value.toLocaleDateString());
     const [showCalendar, setShowCalendar] = useState(false);
 
     const changeDateStr = (event) => {
         const val = event.target.value;
         if (isValidDate(val)) {
-            setDate(new Date(val));
+            changeValue(new Date(val));
         }
         setDateInput(event.target.value);
     }
@@ -24,23 +23,23 @@ export const DatePickerComponent = ({value, changeValue, fieldStates, labelName,
 
     const changeMonth = (event) => {
 
-        let month = date.getMonth();
+        let month = value.getMonth();
         const operation = event.target.getAttribute('data-operation');
         if (operation === 'down') {
             month = month - 1;
         } else {
             month = month + 1;
         }
-        const year = date.getFullYear();
+        const year = value.getFullYear();
         const tempDate = new Date(year, month, 1);
-        setDate(tempDate);
+        changeValue(tempDate);
         setDateInput(tempDate.toLocaleDateString());
     }
 
     const changeDay = (day) => {
-        const tempDate = new Date(date.toString());
+        const tempDate = new Date(value.toString());
         tempDate.setDate(day);
-        setDate(tempDate);
+        changeValue(tempDate);
         setDateInput(tempDate.toLocaleDateString());
     }
 
@@ -55,7 +54,7 @@ export const DatePickerComponent = ({value, changeValue, fieldStates, labelName,
                     <button className="prev-btn" onClick={changeMonth} data-operation={'down'}>
                         <span>&#9664;</span></button>
                     <span className="month-display">
-                        {`${date.getFullYear()} - ${getMonthNames(months, date.getMonth())}`}
+                        {`${value.getFullYear()} - ${getMonthNames(months, value.getMonth())}`}
                     </span>
                     <button className="next-btn" onClick={changeMonth} data-operation={'up'}>
                         <span>&#9658;</span></button>
@@ -65,7 +64,7 @@ export const DatePickerComponent = ({value, changeValue, fieldStates, labelName,
                     <DayHeader cellClass={'cell-header'} isDaysShort={true}/>
                     </thead>
                     <tbody className="days-body">
-                    {createTableRows(6, 7, createDaysOfMonthArray(date), changeDay)}
+                    {createTableRows(6, 7, createDaysOfMonthArray(value), changeDay)}
                     </tbody>
                 </table>
             </div>

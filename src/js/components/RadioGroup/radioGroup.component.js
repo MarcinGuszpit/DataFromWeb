@@ -1,19 +1,22 @@
 import React, {useState} from "react";
 import "./radioGroup.component.scss"
+import {rateTables} from "../../constants/constants";
 
-const testValues = [
-    {id: 'a', desc: 'tabela kursów A'},
-    {id: 'b', desc: 'tabela kursów B'},
-    {id: 'c', desc: 'tabela kursów C'}
-]
-export const RadioGroupComponent = () => {
-    const [selected, setSelected] = useState(testValues[0]);
+
+export const RadioGroupComponent = ({title, valuesTable, actionHandler,groupName}) => {
+
     const onClickHandler = (value) => {
-        console.log(value);
+        if (actionHandler) {
+            actionHandler(value);
+        }
     }
+
     return (
         <div className={"radio-button-group"}>
-            {createRadioGroup(testValues, 'tabele_kursow', onClickHandler)}
+            <h4 className={"group-title"}>{title}</h4>
+            <div>
+                {createRadioGroup(valuesTable, groupName, onClickHandler)}
+            </div>
         </div>
     )
 }
@@ -22,12 +25,15 @@ const createRadioGroup = (values, groupName, func) => {
     let group = [];
     group = values.map((value, index) => {
         return (
-            <div className={"button-wrapper"}>
+            <label htmlFor={'rb_' + groupName + "_" + value.id} className={"radio-label"}>
                 <input type={"radio"} key={index} id={'rb_' + groupName + "_" + value.id} onClick={() => {
                     func(value.id)
                 }} value={value.id} name={groupName} className={"radio-button"}/>
-                <label htmlFor={'rb_' + groupName + "_" + value.id} className={"radio-label"}>{value.desc}</label>
-            </div>)
+                <div className={"radio-wrapper"}>
+                    <span className={"fake-checkmark"}></span>
+                </div>
+                <span className={"label-title"}>{value.desc}</span>
+            </label>)
     })
     return group;
 
