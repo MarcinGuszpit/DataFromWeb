@@ -1,24 +1,48 @@
-.npb-page-wrapper {
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: center;
-   row-gap: 20px;
-   padding-bottom: 800px;
+.npb-page-wrapper, .mf-page-wrapper, .vat-vies-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 20px;
+  padding-bottom: 800px;
 }
 
-.page-title {
-   color: white;
+.subpage-title {
+  color: white;
 }
 
 .date-picker-wrapper {
+  cursor: default;
 
-
-   &.disabled {
-      pointer-events: none;
-   }
-
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
+.buttons-wrapper {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
+.input-text-wrapper {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #263a53;
+}
 
+.form-label {
+  color: #55ccc8;
+  font-size: 18px;
+  padding-top: 30px;
+  padding-left: 40px;
+}
+
+.form-input {
+  font-size: 18px;
+  margin: 0 40px 30px 40px;
+  padding: 5px 10px;
+}

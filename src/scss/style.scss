@@ -1,16 +1,45 @@
 *, html {
-   box-sizing: border-box;
-   font-family: 'Mukta', sans-serif;
-   margin: 0;
-   padding: 0;
-   border: 0;
+  box-sizing: border-box;
+  font-family: 'Mukta', sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 body {
-   background-color: #52667f;
+  background-color: #52667f;
 }
 
 .app-section {
-   width: 1024px;
-   margin: 0 auto;
+  width: 1024px;
+  margin: 0 auto;
+}
+
+.btn {
+  border-radius: 3px;
+  border: 0;
+  padding: 5px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 5px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+
+  &.btn-ok {
+    background-color: #061633;
+    color: white;
+  }
+
+  &.btn-alert {
+    background-color: #263a53;
+    color: #55ccc8;
+  }
+
+  &.disabled {
+    background-color: #303033;
+    color: #787878;
+    pointer-events: none;
+  }
+
 }

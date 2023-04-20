@@ -12,8 +12,8 @@ export const PageHeaderComponent = () => {
                 </svg>
             </div>
             <div className={"page-description"}>
-                <h1 className={"page-title"}>Dane z sieci</h1>
-                <p className={"page-description"}>Rożne informacje przydatne dla firmy</p>
+                <h1 className={"page-title"}>Dane z sieci<span>Informacje z publicznych API</span></h1>
+                <p className={"page-description"}></p>
             </div>
 
         </div>

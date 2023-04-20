@@ -6,6 +6,12 @@ export const rateTables = [
     {id: 'c', desc: 'tabela kursów C'}
 ];
 
+export const dataSelectionTables = [
+    {id: 'nip', desc: 'Szukaj po numerze NIP'},
+    {id: 'regon', desc: 'Szukanie po numerze REGON'},
+    {id: 'account', desc: 'Szukaj po numerze konta bankowego'}
+];
+
 export const countires = [
     {id: 'AT', desc: 'Austria'},
     {id: 'BE', desc: 'Belgia'},

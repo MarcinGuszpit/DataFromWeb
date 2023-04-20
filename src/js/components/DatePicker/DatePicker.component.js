@@ -5,7 +5,7 @@ import {DayHeader} from "./DayHeader.component";
 import {DatePickerCell} from "./DatePickerCell.component";
 import {getElementClass} from "../../utils/Other.utils";
 
-export const DatePickerComponent = ({value, changeValue, fieldStates, labelName, propertyName}) => {
+export const DatePickerComponent = ({value, changeValue}) => {
     const [dateInput, setDateInput] = useState(value.toLocaleDateString());
     const [showCalendar, setShowCalendar] = useState(false);
 
