@@ -57,8 +57,10 @@ export const NBPPage = () => {
                                      actionHandler={changeSelectedTable} groupName={'tabele_kursow'}/>
                 <RadioGroupComponent title={"Wybór dnia"} valuesTable={dateSelectionTable}
                                      actionHandler={changeDateType} groupName={'wybor_dnia'}/>
-                <div className={getElementClass(disabled, 'date-picker-wrapper', 'disabled')}>
-                    <DatePickerComponent value={date} changeValue={changeDateHandler}/>
+                <div className={getElementClass(disabled, 'component-wrapper', 'disabled')}>
+                    <h3 className={"form-label"}>Wybierz datę.</h3>
+                    <div className={"wrap-container"}><DatePickerComponent value={date} changeValue={changeDateHandler}/></div>
+
                 </div>
                 <div className={"buttons-wrapper"}>
                     <button className={"btn btn-alert"} onClick={clearAllData}>Wyczyść</button>

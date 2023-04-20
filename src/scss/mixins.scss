@@ -6,6 +6,7 @@
 }
 
 @mixin inputs {
+
   .inputs {
     display: flex;
     flex-direction: row;
@@ -30,7 +31,7 @@
     }
 
     .input-btn {
-      background-color: #263a53;
+      background-color: #142840;
       font-size: 15px;
       border: 0;
       width: 80px;
@@ -39,4 +40,19 @@
       color: white;
     }
   }
+
+  .disabled {
+    .input-field {
+      background-color: #44484d;
+      color: #939393;
+      cursor: not-allowed;
+    }
+
+    .input-btn {
+      background-color: #303033;
+      cursor: not-allowed;
+    }
+
+  }
+
 }

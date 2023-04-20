@@ -6,10 +6,6 @@
   height: 60px;
   box-sizing: border-box;
 
-
-  @include inputs();
-
-
   .picker {
     top: 60px;
     left: 0;
@@ -64,7 +60,6 @@
   .days-table {
     border-collapse: collapse;
 
-
     td {
       width: 50px;
       height: 50px;
@@ -75,7 +70,6 @@
       font-weight: 400;
       color: #52667f;
       cursor: not-allowed;
-
 
       &.cell-header {
         background-color: #263a53;
@@ -95,18 +89,4 @@
       }
     }
   }
-}
-
-.disabled {
-  .input-field {
-    background-color: #44484d;
-    color: #939393;
-    cursor: not-allowed;
-  }
-
-  .input-btn {
-    background-color: #303033;
-    cursor: not-allowed;
-  }
-
 }

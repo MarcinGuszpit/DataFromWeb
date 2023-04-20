@@ -11,12 +11,21 @@
   color: white;
 }
 
-.date-picker-wrapper {
+.wrap-container {
+  padding-top: 15px;
+  padding-left: 40px;
+}
+
+.component-wrapper {
   cursor: default;
+  width: 500px;
+  background-color: #263a53;
+  padding-bottom: 40px;
 
   &.disabled {
     cursor: not-allowed;
     pointer-events: none;
+    background-color: #37393b;
   }
 }
 
@@ -44,5 +53,19 @@
 .form-input {
   font-size: 18px;
   margin: 0 40px 30px 40px;
-  padding: 5px 10px;
+  padding: 10px 10px;
+  background-color: #334865;
+  color: white;
+  font-weight: 600;
+  outline: 0;
+
+  &:focus {
+    background-color: #061633;
+  }
+}
+
+.disabled {
+   .form-label {
+     color: #787878;
+   }
 }

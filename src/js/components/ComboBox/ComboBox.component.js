@@ -4,18 +4,18 @@ import {ComboBoxItem} from "./ComboBoxItem.component";
 import './ComboBox.component.scss';
 import {getElementClass} from "../../utils/Other.utils";
 
-export const ComboBoxComponent = () => {
-
-    const [country, setCountry] = useState({});
+export const ComboBoxComponent = ({elements,actionChange}) => {
+    const [element,setElement] = useState({});
     const [showList, setShowList] = useState(false);
 
-    const changeCountry = (value) => {
-        const elem = countires.find((elem) => {
+    const changeElement = (value) => {
+        const elem = elements.find((elem) => {
             return elem.id === value;
         })
         if (elem) {
             toggleList();
-            setCountry(elem);
+            setElement(elem);
+            actionChange(elem);
         }
     }
 
@@ -24,8 +24,8 @@ export const ComboBoxComponent = () => {
     }
 
     const getValue = () => {
-        if (country && country.desc) {
-            return country.desc;
+        if (element && element.desc) {
+            return element.desc;
         }
         return '';
     }
@@ -38,8 +38,8 @@ export const ComboBoxComponent = () => {
                     <button className="input-btn" onClick={toggleList}><span>&#x25bc;</span></button>
                 </div>
                 <ul className={getElementClass(showList, 'list-of-elements', 'show')}>
-                    {countires.map((elem, index) =>
-                        <ComboBoxItem key={index} id={elem.id} value={elem.desc} action={changeCountry}/>
+                    {elements.map((elem, index) =>
+                        <ComboBoxItem key={index} id={elem.id} value={elem.desc} action={changeElement}/>
                     )}
                 </ul>
 
