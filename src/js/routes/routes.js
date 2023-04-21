@@ -4,6 +4,7 @@ import {ErrorPage} from "./error.page";
 import {MfPage} from "../pages/mf.page";
 import {VATVIESPage} from "../pages/vatVies.page";
 import {NBPPage} from "../pages/nbp.page";
+import {PrintPage} from "../pages/print.page";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
                 path: "/NIP",
                 element: <MfPage/>,
             },
+            {
+                path: "/PrintOut",
+                element: <PrintPage/>,
+            }
         ]
     },
 ]);

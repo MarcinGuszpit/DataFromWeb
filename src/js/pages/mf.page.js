@@ -1,9 +1,13 @@
-import React, {useState} from "react";
-import {RadioGroupComponent} from "../components/RadioGroup/radioGroup.component";
+import React, {useState, useContext} from "react";
+import {RadioGroupComponent} from "../components/RadioGroup/RadioGroup.component";
 import {dataSelectionTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
+import {findInTable} from "../utils/Other.utils";
+import {AppContext} from "../context/App.context";
 
 export const MfPage = () => {
+
+    const appContext = useContext(AppContext);
 
     const [selection, setSelection] = useState(null);
     const [searchTxt, setSearchTxt] = useState('');
@@ -13,8 +17,9 @@ export const MfPage = () => {
         setDate(value);
     }
 
-    const changeSelection = (value) => {
-        setSelection(value);
+    const changeSelection = (elemId) => {
+        const elem = findInTable(elemId, dataSelectionTables);
+        setSelection(elem);
     }
 
     const changeSearchTxt = (event) => {
@@ -27,12 +32,25 @@ export const MfPage = () => {
         setDate(new Date());
     }
 
+    const setPrintProperties = () => {
+        appContext.setPrintOutProps({
+            printOutName: 'Dane przedsiębiorstw z min. finansów',
+            printType: 'MF',
+            params: {
+                selection: selection,
+                txt: searchTxt,
+                date: date
+            }
+        })
+    }
+
 
     return (
         <React.Fragment>
             <div className={"mf-page-wrapper"}>
                 <h2 className={"subpage-title"}>Dane przedsiębiorstw z min. finansów.</h2>
-                <RadioGroupComponent title={"Wybór pola wyszukiwania"} valuesTable={dataSelectionTables}
+                <RadioGroupComponent selected={selection} title={"Wybór pola wyszukiwania"}
+                                     valuesTable={dataSelectionTables}
                                      actionHandler={changeSelection} groupName={'pole_wyszukiwania'}/>
                 <div className={"input-text-wrapper"}>
                     <label className={"form-label"}>Wpisz szukaną wartość</label>
@@ -41,14 +59,15 @@ export const MfPage = () => {
 
                 <div className={'component-wrapper'}>
                     <h3 className={"form-label"}>Dane sprawdzane na dzień.</h3>
-                    <div className={"wrap-container"}><DatePickerComponent value={date} changeValue={changeDateHandler}/></div>
-
+                    <div className={"wrap-container"}>
+                        <DatePickerComponent value={date} changeValue={changeDateHandler}/>
+                    </div>
                 </div>
 
                 <div className={"buttons-wrapper"}>
                     <button className={"btn btn-alert"} onClick={clearAll}>Wyczyść</button>
                     <button
-                        className={"btn btn-ok"}>Pobierz dane
+                        className={"btn btn-ok"} onClick={setPrintProperties}>Pobierz dane
                     </button>
                 </div>
 

@@ -4,19 +4,12 @@ import {ComboBoxItem} from "./ComboBoxItem.component";
 import './ComboBox.component.scss';
 import {getElementClass} from "../../utils/Other.utils";
 
-export const ComboBoxComponent = ({elements,actionChange}) => {
-    const [element,setElement] = useState({});
+export const ComboBoxComponent = ({selected, elements, actionChange}) => {
     const [showList, setShowList] = useState(false);
 
     const changeElement = (value) => {
-        const elem = elements.find((elem) => {
-            return elem.id === value;
-        })
-        if (elem) {
-            toggleList();
-            setElement(elem);
-            actionChange(elem);
-        }
+        toggleList();
+        actionChange(value);
     }
 
     const toggleList = () => {
@@ -24,8 +17,8 @@ export const ComboBoxComponent = ({elements,actionChange}) => {
     }
 
     const getValue = () => {
-        if (element && element.desc) {
-            return element.desc;
+        if (selected && selected.desc) {
+            return selected.desc;
         }
         return '';
     }
