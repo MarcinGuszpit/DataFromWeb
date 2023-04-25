@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {countires, rateTables} from "../../constants/constants";
+import {countries, rateTables} from "../../constants/constants";
 import {ComboBoxItem} from "./ComboBoxItem.component";
 import './ComboBox.component.scss';
 import {getElementClass} from "../../utils/Other.utils";

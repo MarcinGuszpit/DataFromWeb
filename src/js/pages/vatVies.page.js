@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {ComboBoxComponent} from "../components/ComboBox/ComboBox.component";
-import {countires} from "../constants/constants";
-import {findInTable} from "../utils/Other.utils";
+import {countries} from "../constants/constants";
+import {findInTable, getElementClass} from "../utils/Other.utils";
+import {AppContext} from "../context/App.context";
 
 
 export const VATVIESPage = () => {
+    const appContext = useContext(AppContext);
     const [country, setCountry] = useState(null);
     const [searchTxt, setSearchTxt] = useState('');
 
 
     const changeCountry = (elemId) => {
-        const elem = findInTable(elemId, countires);
+        const elem = findInTable(elemId, countries);
         setCountry(elem);
     }
 
@@ -23,13 +25,25 @@ export const VATVIESPage = () => {
         setSearchTxt('');
     }
 
+    const setPrintProperties = () => {
+        appContext.setPrintOutProps({
+            printOutName: 'Sprawdzanie danych firm z sytemu VAT-VIES',
+            printType: 'VATVIES',
+            params: {
+                country: country,
+                txt: searchTxt,
+                date: new Date()
+            }
+        })
+    }
+
     return (
         <React.Fragment>
             <div className={"vat-vies-page-wrapper"}>
                 <h2 className={"subpage-title"}>Sprawdzanie aktualnych danych VAT VIES</h2>
                 <div className={'component-wrapper'}>
                     <h3 className={"form-label"}>Wybierz kraj pochodzenia.</h3>
-                    <div className={'wrap-container'}><ComboBoxComponent selected={country} elements={countires}
+                    <div className={'wrap-container'}><ComboBoxComponent selected={country} elements={countries}
                                                                          actionChange={changeCountry}/></div>
                 </div>
 
@@ -41,11 +55,16 @@ export const VATVIESPage = () => {
                 <div className={"buttons-wrapper"}>
                     <button className={"btn btn-alert"} onClick={clearAll}>Wyczyść</button>
                     <button
-                        className={"btn btn-ok"}>Pobierz dane
+                        className={getElementClass(!enableButton(country, searchTxt), "btn btn-ok", "disabled")}
+                        onClick={setPrintProperties}>Pobierz dane
                     </button>
                 </div>
 
 
             </div>
         </React.Fragment>)
+}
+
+const enableButton = (country, searchTxt) => {
+    return (country && country.id && country.desc && searchTxt && searchTxt.length > 0)
 }

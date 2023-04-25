@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {RadioGroupComponent} from "../components/RadioGroup/RadioGroup.component";
 import {rateTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
 import './page.styles.scss';
 import {findInTable, getElementClass} from "../utils/Other.utils";
-import {isValidDate} from "../utils/DateManipulation.utils";
+import {AppContext} from "../context/App.context";
+
 
 export const dateSelectionTable = [
     {id: 'today', desc: 'Dzisiaj'},
@@ -12,6 +13,7 @@ export const dateSelectionTable = [
 ];
 
 export const NBPPage = () => {
+    const appContext = useContext(AppContext);
     const [selectedTable, setSelected] = useState(null);
     const [dateType, setDateType] = useState(null);
     const [date, setDate] = useState(new Date());
@@ -49,6 +51,18 @@ export const NBPPage = () => {
         setDate(value);
     }
 
+    const setPrintProperties = () => {
+        appContext.setPrintOutProps({
+            printOutName: 'Dane z tabeli kursów NBP',
+            printType: 'NBP',
+            params: {
+                selectedTable: selectedTable,
+                dateType: dateType,
+                date: date
+            }
+        })
+    }
+
     return (
         <React.Fragment>
             <div className={'npb-page-wrapper'}>
@@ -65,7 +79,9 @@ export const NBPPage = () => {
                 <div className={"buttons-wrapper"}>
                     <button className={"btn btn-alert"} onClick={clearAllData}>Wyczyść</button>
                     <button
-                        className={getElementClass(!enableButton(selectedTable, dateType, date), "btn btn-ok", "disabled")}>Pobierz
+                        className={getElementClass(!enableButton(selectedTable, dateType, date), "btn btn-ok", "disabled")}
+                        onClick={setPrintProperties}
+                    >Pobierz
                         dane
                     </button>
                 </div>

@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import {RadioGroupComponent} from "../components/RadioGroup/RadioGroup.component";
 import {dataSelectionTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
-import {findInTable} from "../utils/Other.utils";
+import {findInTable, getElementClass} from "../utils/Other.utils";
 import {AppContext} from "../context/App.context";
 
 export const MfPage = () => {
@@ -67,10 +67,17 @@ export const MfPage = () => {
                 <div className={"buttons-wrapper"}>
                     <button className={"btn btn-alert"} onClick={clearAll}>Wyczyść</button>
                     <button
-                        className={"btn btn-ok"} onClick={setPrintProperties}>Pobierz dane
+                        className={getElementClass(!enableButton(selection, searchTxt, date), "btn btn-ok", "disabled")}
+                        onClick={setPrintProperties}
+                    >
+                        Pobierz dane
                     </button>
                 </div>
 
             </div>
         </React.Fragment>)
+}
+
+const enableButton = (selection, searchTxt, date) => {
+    return (selection && selection.id && selection.desc && searchTxt && searchTxt.length > 0 && date instanceof Date)
 }

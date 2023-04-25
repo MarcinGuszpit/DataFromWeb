@@ -12,7 +12,7 @@ export const dataSelectionTables = [
     {id: 'account', desc: 'Szukaj po numerze konta bankowego'}
 ];
 
-export const countires = [
+export const countries = [
     {id: 'AT', desc: 'Austria'},
     {id: 'BE', desc: 'Belgia'},
     {id: 'BG', desc: 'Bułgaria'},

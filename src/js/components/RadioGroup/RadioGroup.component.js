@@ -20,8 +20,7 @@ export const RadioGroupComponent = ({selected, title, valuesTable, actionHandler
 }
 
 const createRadioGroup = (selected, values, groupName, func) => {
-    let group = [];
-    group = values.map((value, index) => {
+    return values.map((value, index) => {
         return (
             <label htmlFor={'rb_' + groupName + "_" + value.id} className={"radio-label"} key={index}>
                 <input type={"radio"} id={'rb_' + groupName + "_" + value.id} onClick={() => {
@@ -34,7 +33,6 @@ const createRadioGroup = (selected, values, groupName, func) => {
                 <span className={"label-title"}>{value.desc}</span>
             </label>)
     })
-    return group;
 }
 
 const elementFound = (selected, current) => {
