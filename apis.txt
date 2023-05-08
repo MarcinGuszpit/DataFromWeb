@@ -25,7 +25,7 @@ https://www.gov.pl/web/kas/api-wykazu-podatnikow-vat
 
 https://wl-api.mf.gov.pl/api/search/nip/{nip}/?date={data}
 https://wl-api.mf.gov.pl/api/search/bank-account/{konto}/?date={data}
-https://wl-api.mf.gov.pl/api/search/regon/{regon}/?data={data}
+https://wl-api.mf.gov.pl/api/search/regon/{regon}/?date={data}
 
 szukanie po numerze nip, nr konta bankowego i regon
 

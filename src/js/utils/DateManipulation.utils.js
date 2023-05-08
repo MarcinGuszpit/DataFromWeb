@@ -53,3 +53,12 @@ export const createDaysOfMonthArray = (date) => {
 export const isValidDate = (dateAsString) => {
     return (dateAsString && !Number.isNaN(Date.parse(dateAsString)));
 }
+
+export function getDateString(date, separator) {
+    if (date instanceof Date) {
+        const year = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(date);
+        const month = new Intl.DateTimeFormat('en', {month: '2-digit'}).format(date);
+        const day = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(date);
+        return `${year}${separator}${month}${separator}${day}`;
+    }
+}

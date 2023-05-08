@@ -21,10 +21,9 @@ export const DatePickerComponent = ({value, changeValue}) => {
         setShowCalendar(!showCalendar);
     }
 
-    const changeMonth = (event) => {
+    const changeMonth = (operation) => {
 
         let month = value.getMonth();
-        const operation = event.target.getAttribute('data-operation');
         if (operation === 'down') {
             month = month - 1;
         } else {
@@ -34,6 +33,14 @@ export const DatePickerComponent = ({value, changeValue}) => {
         const tempDate = new Date(year, month, 1);
         changeValue(tempDate);
         setDateInput(tempDate.toLocaleDateString());
+    }
+
+    const prevMonth = () => {
+        changeMonth('down');
+    }
+
+    const nextMonth = () => {
+        changeMonth('up');
     }
 
     const changeDay = (day) => {
@@ -51,12 +58,12 @@ export const DatePickerComponent = ({value, changeValue}) => {
             </div>
             <div className={getElementClass(showCalendar, 'picker', 'show')}>
                 <div className="month-selection">
-                    <button className="prev-btn" onClick={changeMonth} data-operation={'down'}>
+                    <button className="prev-btn" onClick={prevMonth}>
                         <span>&#9664;</span></button>
                     <span className="month-display">
                         {`${value.getFullYear()} - ${getMonthNames(months, value.getMonth())}`}
                     </span>
-                    <button className="next-btn" onClick={changeMonth} data-operation={'up'}>
+                    <button className="next-btn" onClick={nextMonth}>
                         <span>&#9658;</span></button>
                 </div>
                 <table className="days-table">
