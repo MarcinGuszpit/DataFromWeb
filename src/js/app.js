@@ -10,7 +10,6 @@ const app = createRoot(appNode);
 app.render(
     <React.Fragment>
         <AppContextProvider>
-            < RouterProvider router={router}>
-            </RouterProvider>
+            < RouterProvider router={router}></RouterProvider>
         </AppContextProvider>
     </React.Fragment>);

@@ -17,6 +17,7 @@ export const MenuBarComponent = (elements) => {
                     <li><Link to={"/kursy-nbp"}>tabele kursów NBP</Link></li>
                     <li><Link to={"/VAT-VIES"}>informacja VAT VIES</Link></li>
                     <li><Link to={"/NIP"}>wyszukiwanie danych przedsiębiorstw</Link></li>
+                    <li><Link to={"/PrintOut"}>wydruki</Link></li>
                 </ul>
             </div>
         </React.Fragment>)

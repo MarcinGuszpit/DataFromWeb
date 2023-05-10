@@ -6,26 +6,39 @@ export const AppContext = React.createContext({
     printOutProps: {},
     data: [],
     setPrintOutProps: () => {
-    },
-    getData: () => {
     }
 })
 
 export const AppContextProvider = ({children}) => {
+
     const [printOutName, setPrintOutName] = useState('');
     const [printOutProps, setPrintOutProps] = useState(null);
     const [data, setData] = useState(null);
 
-    const changePrintOutProps = (obj) => {
-        //fetchNBPData(obj.params);
-        fetchMFData(obj.params);
+
+    const changePrintOutProps = (obj, callback) => {
+        console.log('change print options');
+        if (obj && obj.printType && obj.params) {
+            setPrintOutName(obj.printOutName);
+            setPrintOutProps({
+                name: obj.printOutName,
+                type: obj.printType
+            })
+            switch (obj.printType) {
+                case 'MF': {
+                    fetchMFData(obj.params, callback);
+                    break;
+                }
+                case 'NBP': {
+                    fetchNBPData(obj.params, callback);
+                    break;
+                }
+
+            }
+        }
     }
 
-    const fetchData = () => {
-        console.log('fetching data from web');
-    }
-
-    const fetchNBPData = (params) => {
+    const fetchNBPData = (params, callback) => {
 
         const {date, dateType, selectedTable} = {...params};
 
@@ -41,6 +54,7 @@ export const AppContextProvider = ({children}) => {
                 .then((data) => {
                     if (data && data.length > 0) {
                         setData(data[0]);
+                        callback();
                     }
                 }).catch(() => {
                 setData(null);
@@ -48,38 +62,38 @@ export const AppContextProvider = ({children}) => {
         }
     }
 
-    const fetchMFData = (params) => {
+    const fetchMFData = (params, callback) => {
         const {date, selection, txt} = {...params};
 
         let urlFragment = '';
         if (selection && selection.id) {
             switch (selection.id) {
                 case 'nip': {
-                   urlFragment =  'nip/';
-                  break;
+                    urlFragment = 'nip/';
+                    break;
                 }
                 case 'regon': {
-                   urlFragment =  'regon/'
-                   break;
+                    urlFragment = 'regon/'
+                    break;
                 }
 
                 case 'account': {
-                   urlFragment =  'bank-account/'
-                   break;
+                    urlFragment = 'bank-account/'
+                    break;
                 }
             }
         }
 
-        if (txt && txt.length>0) {
+        if (txt && txt.length > 0) {
             urlFragment = urlFragment + txt;
         }
 
-        fetch(`https://wl-api.mf.gov.pl/api/search/${urlFragment}/?date=${getDateString(date,'-')}`)
+        fetch(`https://wl-api.mf.gov.pl/api/search/${urlFragment}/?date=${getDateString(date, '-')}`)
             .then(response => response.json())
             .then((data) => {
-                console.log(data.result.subject);
                 if (data && data.result && data.result.subject) {
                     setData(data.result.subject);
+                    callback();
                 }
             }).catch(() => {
             setData(null);
@@ -122,7 +136,6 @@ export const AppContextProvider = ({children}) => {
             printOutProps: printOutProps,
             data: data,
             setPrintOutProps: changePrintOutProps,
-            getData: fetchData
         }}>
             {children}
         </AppContext.Provider>

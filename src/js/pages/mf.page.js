@@ -4,9 +4,10 @@ import {dataSelectionTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
 import {findInTable, getElementClass} from "../utils/Other.utils";
 import {AppContext} from "../context/App.context";
+import {useNavigate} from "react-router-dom";
 
 export const MfPage = () => {
-
+    const navigate = useNavigate();
     const appContext = useContext(AppContext);
 
     const [selection, setSelection] = useState(null);
@@ -15,6 +16,10 @@ export const MfPage = () => {
 
     const changeDateHandler = (value) => {
         setDate(value);
+    }
+
+    const callbackOk = () => {
+        navigate('/PrintOut');
     }
 
     const changeSelection = (elemId) => {
@@ -41,9 +46,11 @@ export const MfPage = () => {
                 txt: searchTxt,
                 date: date
             }
-        })
+        }, callbackOk)
     }
 
+    console.log(appContext.data);
+    console.log(appContext.printOutName);
 
     return (
         <React.Fragment>

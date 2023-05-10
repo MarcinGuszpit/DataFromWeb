@@ -5,6 +5,7 @@ import {DatePickerComponent} from "../components/DatePicker/DatePicker.component
 import './page.styles.scss';
 import {findInTable, getElementClass} from "../utils/Other.utils";
 import {AppContext} from "../context/App.context";
+import {useNavigate} from "react-router-dom";
 
 
 export const dateSelectionTable = [
@@ -13,6 +14,7 @@ export const dateSelectionTable = [
 ];
 
 export const NBPPage = () => {
+    const navigate = useNavigate();
     const appContext = useContext(AppContext);
     const [selectedTable, setSelected] = useState(null);
     const [dateType, setDateType] = useState(null);
@@ -23,6 +25,10 @@ export const NBPPage = () => {
     const changeSelectedTable = (elemId) => {
         const elem = findInTable(elemId, rateTables);
         setSelected(elem);
+    }
+
+    const callbackOk = () => {
+        navigate('/PrintOut');
     }
 
     const clearAllData = () => {
@@ -60,7 +66,7 @@ export const NBPPage = () => {
                 dateType: dateType,
                 date: date
             }
-        })
+        }, callbackOk);
     }
 
     return (
