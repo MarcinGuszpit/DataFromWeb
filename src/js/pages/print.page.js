@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {AppContext} from "../context/App.context";
 import {MFPrintout} from "../components/printouts/MF.printout";
 import {Link} from "react-router-dom";
+import {NBPPrintout} from "../components/printouts/NBP.printout";
 export const PrintPage = () => {
     const appContext = useContext(AppContext);
     console.log(appContext.data);
@@ -11,7 +12,7 @@ export const PrintPage = () => {
             <div className={"mf-page-wrapper"}>
                 <h2 className={"subpage-title"}>Drukowanie</h2>
                 {appContext.printOutName &&<div>{appContext.printOutName}</div>}
-                <MFPrintout data={appContext.data}></MFPrintout>
+                <NBPPrintout data={appContext.data}></NBPPrintout>
 
                 <Link to={'/'}>Powrót do strony głównej</Link>
 
