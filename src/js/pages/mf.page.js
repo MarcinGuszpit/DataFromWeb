@@ -49,9 +49,6 @@ export const MfPage = () => {
         }, callbackOk)
     }
 
-    console.log(appContext.data);
-    console.log(appContext.printOutName);
-
     return (
         <React.Fragment>
             <div className={"mf-page-wrapper"}>

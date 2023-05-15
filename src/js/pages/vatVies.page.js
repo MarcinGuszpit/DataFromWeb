@@ -3,13 +3,18 @@ import {ComboBoxComponent} from "../components/ComboBox/ComboBox.component";
 import {countries} from "../constants/constants";
 import {findInTable, getElementClass} from "../utils/Other.utils";
 import {AppContext} from "../context/App.context";
+import {useNavigate} from "react-router-dom";
 
 
 export const VATVIESPage = () => {
     const appContext = useContext(AppContext);
     const [country, setCountry] = useState(null);
     const [searchTxt, setSearchTxt] = useState('');
+    const navigate = useNavigate();
 
+    const callbackOk = () => {
+        navigate('/PrintOut');
+    }
 
     const changeCountry = (elemId) => {
         const elem = findInTable(elemId, countries);
@@ -34,7 +39,7 @@ export const VATVIESPage = () => {
                 txt: searchTxt,
                 date: new Date()
             }
-        })
+        }, callbackOk);
     }
 
     return (
