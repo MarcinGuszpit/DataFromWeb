@@ -18,24 +18,25 @@ export const AppContextProvider = ({children}) => {
 
     const changePrintOutProps = (obj, callback) => {
         console.log('change print options');
-        if (obj && obj.printType && obj.params) {
-            setPrintOutName(obj.printOutName);
-            setPrintOutProps({
-                name: obj.printOutName,
-                type: obj.printType
-            })
-            switch (obj.printType) {
-                case 'MF': {
-                    fetchMFData(obj.params, callback);
-                    break;
-                }
-                case 'NBP': {
-                    fetchNBPData(obj.params, callback);
-                    break;
-                }
-
-            }
-        }
+        console.log(obj.params);
+        // if (obj && obj.printType && obj.params) {
+        //     setPrintOutName(obj.printOutName);
+        //     setPrintOutProps({
+        //         name: obj.printOutName,
+        //         type: obj.printType
+        //     })
+        //     switch (obj.printType) {
+        //         case 'MF': {
+        //             fetchMFData(obj.params, callback);
+        //             break;
+        //         }
+        //         case 'NBP': {
+        //             fetchNBPData(obj.params, callback);
+        //             break;
+        //         }
+        //
+        //     }
+        // }
     }
 
     const fetchNBPData = (params, callback) => {
@@ -103,29 +104,25 @@ export const AppContextProvider = ({children}) => {
 
     const fetchVATVIESData = (params) => {
         console.log(params);
-        // let xmls = `
-        //     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-        //       <soapenv:Header/>
-        //       <soapenv:Body>
-        //       <tns1:checkVat xmlns:tns1="urn:ec.europa.eu:taxud:vies:services:checkVat">
-        //         <tns1:countryCode>${params.country.id}</tns1:countryCode>
-        //         <tns1:vatNumber>${params.txt}</tns1:vatNumber>
-        //       </tns1:checkVat>
-        //       </soapenv:Body>
-        //     </soapenv:Envelope>`;
-        //
-        // console.log(xmls);
-        //
-        // fetch(`http://ec.europa.eu/taxation_customs/vies/services/checkVatService`).then((response) => {
-        //     console.log(response);
-        // }).catch(err => console.log(err));
+        let xmls = `
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns1="urn:ec.europa.eu:taxud:vies:services:checkVat:types">
+                <soapenv:Header>
+                </soapenv:Header>
+                <soapenv:Body>
+                 <tns1:checkVat>
+                    <tns1:countryCode>PL</tns1:countryCode>
+                    <tns1:vatNumber>6131001463</tns1:vatNumber>
+                 </tns1:checkVat>
+                </soapenv:Body>
+            </soapenv:Envelope>`;
 
+        console.log(xmls);
 
-        // fetch(`https://ec.europa.eu/taxation_customs/vies/rest-api/ms/${params.country.id}/vat/${params.txt}`,{
-        //     mode: "no-cors",
-        // }).then(response => response.json()).then((data)=>{
-        //     console.log(data);
-        // });
+        fetch(`http://ec.europa.eu/taxation_customs/vies/services/checkVatService.wsdl`, {method: 'POST', body:xmls})
+            .then(response => response.text())
+            .then((data) => {
+                console.log(data);
+            }).catch(err => console.log(err));
 
     }
 
