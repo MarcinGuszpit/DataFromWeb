@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {RadioGroupComponent} from "../components/RadioGroup/RadioGroup.component";
 import {rateTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
@@ -27,9 +27,15 @@ export const NBPPage = () => {
         setSelected(elem);
     }
 
-    const callbackOk = () => {
+    const goToPrintOut = () => {
         navigate('/PrintOut');
     }
+
+    useEffect(() => {
+        if (appContext.dataLoaded) {
+            goToPrintOut();
+        }
+    }, [appContext.dataLoaded]);
 
     const clearAllData = () => {
         setSelected(null);
@@ -66,7 +72,7 @@ export const NBPPage = () => {
                 dateType: dateType,
                 date: date
             }
-        }, callbackOk);
+        });
     }
 
     return (

@@ -5,6 +5,7 @@ import {MfPage} from "../pages/mf.page";
 import {VATVIESPage} from "../pages/vatVies.page";
 import {NBPPage} from "../pages/nbp.page";
 import {PrintPage} from "../pages/print.page";
+import {DescriptionPage} from "../pages/description.page";
 
 export const router = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <div>Strona Główna</div>,
+                element: <DescriptionPage/>,
             },
             {
                 path: "/kursy-nbp",

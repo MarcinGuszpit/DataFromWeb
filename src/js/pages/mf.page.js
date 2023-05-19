@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import {RadioGroupComponent} from "../components/RadioGroup/RadioGroup.component";
 import {dataSelectionTables} from "../constants/constants";
 import {DatePickerComponent} from "../components/DatePicker/DatePicker.component";
@@ -18,9 +18,15 @@ export const MfPage = () => {
         setDate(value);
     }
 
-    const callbackOk = () => {
+    const goToPrintOut = () => {
         navigate('/PrintOut');
     }
+
+    useEffect(()=>{
+        if (appContext.dataLoaded) {
+            goToPrintOut();
+        }
+    },[appContext.dataLoaded]);
 
     const changeSelection = (elemId) => {
         const elem = findInTable(elemId, dataSelectionTables);
@@ -46,7 +52,7 @@ export const MfPage = () => {
                 txt: searchTxt,
                 date: date
             }
-        }, callbackOk)
+        });
     }
 
     return (

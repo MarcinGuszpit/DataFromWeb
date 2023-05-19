@@ -16,10 +16,7 @@ export const ErrorPage = () => {
             </div>
             <div className={"error-content"}>
                 <h3 className={"error-title"}>Wystąpił błąd!</h3>
-                <p className={"error-description"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Delectus deleniti dignissimos doloremque enim fugit incidunt maiores, modi necessitatibus numquam
-                    perspiciatis,
-                    quaerat, quam qui quo reiciendis totam veritatis voluptates. Modi, vitae.</p>
+                <p className={"error-description"}>Przebywasz na złej podstronie. Mógł też wystąpić nieokreślony błąd. </p>
                 <Link to={"/"} className={'error-link'}>Powrót do strony głównej</Link>
             </div>
         </div>

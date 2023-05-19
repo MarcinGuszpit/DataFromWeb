@@ -1,4 +1,4 @@
-.npb-page-wrapper, .mf-page-wrapper, .vat-vies-page-wrapper {
+.npb-page-wrapper, .mf-page-wrapper, .vat-vies-page-wrapper, .print-page-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -6,6 +6,13 @@
   row-gap: 20px;
   padding-bottom: 800px;
 }
+
+.print-page-wrapper {
+  .print-title {
+    color: white;
+  }
+}
+
 
 .subpage-title {
   color: white;
@@ -30,10 +37,10 @@
 }
 
 .buttons-wrapper {
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .input-text-wrapper {
@@ -65,7 +72,96 @@
 }
 
 .disabled {
-   .form-label {
-     color: #787878;
-   }
+  .form-label {
+    color: #787878;
+  }
+}
+
+.printout-results {
+  background-color: #334865;
+  width: 50%;
+  text-align: center;
+
+  .print-label {
+    text-align: left;
+    color: white;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    padding: 2px;
+
+    margin-bottom: 5px;
+  }
+
+  .print-value {
+    font-size: 18px;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+    color: #55ccc8;
+    padding: 5px 10px;
+    text-align: left;
+  }
+
+  .rates-table {
+    margin: 20px auto;
+    border: 1px solid #061633;
+    border-collapse: collapse;
+
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #061633;
+      color: white;
+    }
+  }
+
+  .account-value {
+    color: #55ccc8;
+    font-size: 18px;
+    text-align: left;
+    padding: 10px;
+  }
+
+}
+
+.page-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .info-card {
+    width: 48%;
+    background-color: white;
+    padding: 20px 0;
+  }
+
+  .info-title {
+     padding-left: 20px;
+  }
+
+  .title-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .info-description {
+    padding: 20px 30px;
+    text-align: justify;
+
+  }
+
+  .info-icon {
+    height: 40px;
+    width: 40px;
+    background-color: #ea6060;
+    fill: white;
+  }
+
+  .info-link {
+     margin-left: 5px;
+     color: #55ccc8;
+  }
+
 }

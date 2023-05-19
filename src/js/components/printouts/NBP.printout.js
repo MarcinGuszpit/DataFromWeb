@@ -4,23 +4,22 @@ export const NBPPrintout = ({data}) => {
     return (
         <React.Fragment>
             {data && <div className={"printout-results"}>
-                <label>Tabela</label>
-                <div>{data.table}</div>
-                <label>Numer i data</label>
-                <div>{data.no} z dnia {data.effectiveDate}</div>
-                <table>
+                <label className={"print-label"}>Tabela</label>
+                <div className={"print-value"}>{data.table}</div>
+                <label className={"print-label"}>Numer i data</label>
+                <div className={"print-value"}>{data.no} z dnia {data.effectiveDate}</div>
+                <table className={'rates-table'}>
                     {data.rates.map((elem, index) => (
                         <tr key={index}>
                             <td>{elem.currency}</td>
                             <td>{elem.code}</td>
-                            <td>{elem.mid}</td>
-                            <td>{elem.bid}</td>
-                            <td>{elem.ask}</td>
+                            {elem.mid && <td>{elem.mid}</td>}
+                            {elem.bid &&<td>{elem.bid}</td>}
+                            {elem.ask &&<td>{elem.ask}</td>}
                         </tr>))}
                 </table>
             </div>
             }
-            <span>Dane z NBP</span>
         </React.Fragment>
     )
 }
