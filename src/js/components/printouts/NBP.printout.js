@@ -9,6 +9,7 @@ export const NBPPrintout = ({data}) => {
                 <label className={"print-label"}>Numer i data</label>
                 <div className={"print-value"}>{data.no} z dnia {data.effectiveDate}</div>
                 <table className={'rates-table'}>
+                    <tbody>
                     {data.rates.map((elem, index) => (
                         <tr key={index}>
                             <td>{elem.currency}</td>
@@ -17,6 +18,7 @@ export const NBPPrintout = ({data}) => {
                             {elem.bid &&<td>{elem.bid}</td>}
                             {elem.ask &&<td>{elem.ask}</td>}
                         </tr>))}
+                    </tbody>
                 </table>
             </div>
             }

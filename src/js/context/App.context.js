@@ -6,10 +6,15 @@ export const AppContext = React.createContext({
     printOutProps: {},
     data: [],
     dataLoaded: false,
+    errorMessage: '',
+    showError: false,
+    showErrorMessage: (msg) => {
+    },
+    hideErrorMessage: () => {
+    },
     setPrintOutProps: () => {
     },
     isDataLoaded: () => {
-
     }
 })
 
@@ -19,7 +24,17 @@ export const AppContextProvider = ({children}) => {
     const [printOutProps, setPrintOutProps] = useState(null);
     const [data, setData] = useState(null);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
+    const showErrorMessage = (errorMsg) => {
+        setErrorMessage(errorMsg);
+        setShowError(true);
+    }
+
+    const hideErrorMessage = () => {
+        setShowError(false);
+    }
 
     const isDataLoaded = (bool) => {
         setDataLoaded(bool);
@@ -66,7 +81,12 @@ export const AppContextProvider = ({children}) => {
             }
 
             fetch(`http://api.nbp.pl/api/exchangerates/tables/${table}${dateString}/?format=json`)
-                .then(response => response.json())
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    }
+                    throw new Error('Request Errror');
+                })
                 .then((data) => {
                     if (data && data.length > 0) {
                         setData(data[0]);
@@ -74,6 +94,7 @@ export const AppContextProvider = ({children}) => {
                     }
                 }).catch(() => {
                 setData(null);
+                showErrorMessage('Pobieranie danych z api NBP nie powiodło się!');
             });
         }
     }
@@ -105,15 +126,22 @@ export const AppContextProvider = ({children}) => {
         }
 
         fetch(`https://wl-api.mf.gov.pl/api/search/${urlFragment}/?date=${getDateString(date, '-')}`)
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error('Request Errror');
+            })
             .then((data) => {
                 if (data && data.result && data.result.subject) {
                     setData(data.result.subject);
                     setDataLoaded(true);
                 }
-            }).catch(() => {
-            setData(null);
-        });
+            })
+            .catch(() => {
+                setData(null);
+                showErrorMessage('Pobieranie danych z api Ministerstwa Finansów nie powiodło się!');
+            });
 
     }
 
@@ -157,9 +185,13 @@ export const AppContextProvider = ({children}) => {
             printOutProps: printOutProps,
             data: data,
             dataLoaded: dataLoaded,
+            showError,
+            errorMessage,
             setPrintOutProps: changePrintOutProps,
             clearAll,
-            isDataLoaded
+            isDataLoaded,
+            showErrorMessage,
+            hideErrorMessage
         }}>
             {children}
         </AppContext.Provider>

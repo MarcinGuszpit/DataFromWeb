@@ -1,0 +1,67 @@
+.msg-background {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(38, 58, 83, 0.4); //rgba(255, 0, 255, 0.2);
+  position: absolute;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  .msg-title {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .msg-message {
+     color: goldenrod;
+     display: flex;
+     align-items: center;
+     padding-left: 10px;
+     font-size: 18px;
+  }
+
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+    background-color: goldenrod;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .msg-icon {
+    width: 40px;
+    height: 40px;
+    fill: white;
+  }
+
+  .msg-content {
+    padding: 20px 30px;
+    text-align: justify;
+    color: darkgoldenrod;
+  }
+
+  .btn-row {
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-end;
+     padding: 20px 10px;
+  }
+
+  .msg-body {
+    position: absolute;
+    width: 500px;
+    padding-bottom: 10px;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    z-index: 5001;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+}

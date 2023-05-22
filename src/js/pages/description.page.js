@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 export const DescriptionPage = () => {
     return (<React.Fragment>
+
         <div className={"page-info"}>
 
             <div className={"info-card"}>
