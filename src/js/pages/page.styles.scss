@@ -8,6 +8,11 @@
 }
 
 .print-page-wrapper {
+
+  @media print {
+    width: 100%;
+  }
+
   .print-title {
     color: white;
   }
@@ -16,6 +21,11 @@
 
 .subpage-title {
   color: white;
+
+  @media print {
+    display: none;
+  }
+
 }
 
 .wrap-container {
@@ -41,6 +51,11 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  @media print {
+    display: none;
+  }
+
 }
 
 .input-text-wrapper {
@@ -82,6 +97,11 @@
   width: 50%;
   text-align: center;
 
+  @media print {
+    width: 100%;
+  }
+
+
   .print-label {
     text-align: left;
     color: white;
@@ -90,8 +110,13 @@
     font-weight: bold;
     display: block;
     padding: 2px;
-
     margin-bottom: 5px;
+
+    @media print {
+      color: black;
+      margin-bottom: 0;
+    }
+
   }
 
   .print-value {
@@ -101,6 +126,12 @@
     color: #55ccc8;
     padding: 5px 10px;
     text-align: left;
+
+    @media print {
+      color: black;
+      padding: 2px;
+    }
+
   }
 
   .rates-table {
@@ -108,11 +139,23 @@
     border: 1px solid #061633;
     border-collapse: collapse;
 
+    @media print {
+      width: 100%;
+
+    }
+
     td {
       padding: 10px;
       text-align: center;
       border: 1px solid #061633;
       color: white;
+
+      @media print {
+        color: black;
+        padding: 2px;
+        text-align: left;
+      }
+
     }
   }
 
@@ -121,6 +164,11 @@
     font-size: 18px;
     text-align: left;
     padding: 10px;
+
+    @media print {
+       color: black;
+    }
+
   }
 
 }

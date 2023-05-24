@@ -22,7 +22,7 @@ export const PrintPage = () => {
                             appContext.clearAll()
                         }}>Wyczyść dane
                         </button>
-                        <button className={"btn btn-ok"}>Wydrukuj</button>
+                        <button className={"btn btn-ok"} onClick={()=>{window.print()}}>Wydrukuj</button>
                         <Link to={'/'} className={"btn btn-ok"}>Powrót do strony głównej</Link>
                     </div>
                 </div>}

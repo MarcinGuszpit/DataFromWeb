@@ -171,10 +171,7 @@ export const AppContextProvider = ({children}) => {
             }
         })
             .then(response => response.text()).then((data) => {
-            console.log(data);
         }).catch(err => {
-            console.log('Error');
-            console.log(err)
         });
     }
 

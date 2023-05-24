@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useRef} from 'react';
+import ReactDom from 'react-dom';
 import './ErrorMessage.component.scss';
 import {AppContext} from "../../context/App.context";
 import {getElementClass} from "../../utils/Other.utils";
@@ -7,6 +8,7 @@ export const ErrorMessageComponent = () => {
     const appContext = useContext(AppContext);
 
     const elemRef = useRef();
+    const containerRef = useRef();
 
     const handleClick = () => {
         appContext.hideErrorMessage();
@@ -14,17 +16,23 @@ export const ErrorMessageComponent = () => {
 
     useEffect(() => {
         let elem = elemRef.current;
+        let container = containerRef.current;
+
         let scroll = window.scrollY;
+        let allHeight = document.documentElement.scrollHeight;
+
         if (appContext.showError) {
             elem.style.top = '' + scroll + 'px';
-        }
-        else {
+            container.style.height = allHeight + 'px';
+        } else {
             elem.style.top = '';
+            container.style.height = '';
         }
     }, [appContext.showError]);
 
     return (
         <React.Fragment>
+            <div className={getElementClass(appContext.showError, "msg-container", 'show')} ref={containerRef}></div>
             <div className={getElementClass(appContext.showError, "msg-background", 'show')} ref={elemRef}>
                 <div className={"msg-body"}>
                     <div className={"msg-title"}>
@@ -50,4 +58,13 @@ export const ErrorMessageComponent = () => {
     )
 }
 
+const errorPortalElement = document.getElementById('Error-portal');
+
+export const ErrorComponent = () => {
+    return (
+        <div>
+            {ReactDom.createPortal(<ErrorMessageComponent/>, document.getElementById('Error-portal'))}
+        </div>
+    )
+}
 
