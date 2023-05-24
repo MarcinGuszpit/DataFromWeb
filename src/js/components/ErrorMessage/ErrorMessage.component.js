@@ -63,7 +63,7 @@ const errorPortalElement = document.getElementById('Error-portal');
 export const ErrorComponent = () => {
     return (
         <div>
-            {ReactDom.createPortal(<ErrorMessageComponent/>, document.getElementById('Error-portal'))}
+            {ReactDom.createPortal(<ErrorMessageComponent/>, errorPortalElement)}
         </div>
     )
 }
